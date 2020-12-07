@@ -1,0 +1,30 @@
+{
+  "name": "tickets-api",
+  "version": "1.0.0",
+  "description": "API for tickets app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pojok-webdev/tickets-api.git"
+  },
+  "keywords": [
+    "tickets"
+  ],
+  "author": "puji w prayitno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pojok-webdev/tickets-api/issues"
+  },
+  "homepage": "https://github.com/pojok-webdev/tickets-api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "path": "^0.12.7",
+    "promise-mysql": "^4.1.4"
+  }
+}
