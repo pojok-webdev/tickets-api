@@ -10,15 +10,64 @@ app.use(function(req,res,next){
 });
 app.use(bodyParser.json({limit:'10mb',extended:true}));
 app.use(bodyParser.urlencoded({limit:'10mb',extended:true}));
-app.get('/getticketbycode/:kdticket',(req,res)=>{
-  con.getdata(query.getticketbycode(req.params),result=>{
-  res.send(result);
-  });
-});
 app.get('/getclientbyid/:id',(req,res)=>{
   res.header("Access-Control-Allow-Origin","*")
   con.getdata(query.getClientById(req.params),result=>{
     res.send(result)
+  })
+})
+app.get('/getticketbycode/:kdticket',(req,res)=>{
+  res.header("Access-Control-Allow-Origin","*")
+  con.getdata(query.getticketbycode(req.params),result=>{
+      res.send(result)
+  })
+})
+app.get('/getticketbyname/:clientname',(req,res)=>{
+  res.header("Access-Control-Allow-Origin","*")
+  con.getdata(query.getticketbyname(req.params),result=>{
+      res.send(result)
+  })
+})
+app.get('/removeticket/:id',(req,res)=>{
+  res.header("Access-Control-Allow-Origin","*")
+  con.getdata(query.removeticket(req.params),result=>{
+      res.send(result)
+  })
+})
+app.get('/backupticket/:id',(req,res)=>{
+  res.header("Access-Control-Allow-Origin","*")
+  con.getdata(query.backupticket(req.params),result=>{
+      res.send(result)
+  })
+})
+app.get('/tickettrash/:segment/:offset',(req,res)=>{
+  res.header("Access-Control-Allow-Origin","*")
+  con.getdata(query.tickettrash(req.params),result=>{
+      res.send(result)
+  })
+})
+app.get('/restoreticket/:id',(req,res)=>{
+  res.header("Access-Control-Allow-Origin","*")
+  con.getdata(query.restoreticket(req.params),result=>{
+      res.send(result)
+  })
+})
+app.get('/removedeletedticket/:id',(req,res)=>{
+  res.header("Access-Control-Allow-Origin","*")
+  con.getdata(query.removedeletedticket(req.params),result=>{
+      res.send(result)
+  })
+})
+app.get('/ticketsamount/:status',(req,res)=>{
+  res.header("Access-Control-Allow-Origin","*")
+  con.getdata(query.ticketsamount(req.params),result=>{
+    res.send(result)
+  })
+})
+app.get('/getdeletedticketbycode/:kdticket',(req,res)=>{
+  res.header("Access-Control-Allow-Origin","*")
+  con.getdata(query.getdeletedticketbycode(req.params),result=>{
+      res.send(result)
   })
 })
 

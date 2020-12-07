@@ -1,9 +1,15 @@
     getticketbycode = obj => {
       sql = 'select id,status,kdticket,clientname from tickets '
-      sql+= 'where kdticket='+obj.kdticket+' '
+      sql+= 'where kdticket="'+obj.kdticket+'" '
       console.log('getticketbycode',sql)
       return sql
     },
+    getdeletedticketbycode = obj => {
+      sql = 'select id,status,kdticket,clientname from deletedtickets '
+      sql+= 'where kdticket="'+obj.kdticket+'" '
+      console.log('getdeletedticketbycode',sql)
+      return sql
+    }
     getticketbyname = obj => {
       sql = 'select id,status,kdticket,clientname from tickets '
       sql+= 'where clientname like "%'+obj.clientname+'%" '
@@ -54,5 +60,7 @@ module.exports = {
 	backupticket:backupticket,
 	tickettrash:tickettrash,
 	restoreticket:restoreticket,
-	ticketsamount:ticketsamount
+  ticketsamount:ticketsamount,
+  removedeletedticket:removedeletedticket,
+  getdeletedticketbycode:getdeletedticketbycode
 }
