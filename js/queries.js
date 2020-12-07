@@ -41,6 +41,12 @@
       console.log('restore ticket',sql)
       return sql
     },
+    updateTicketCodeById = obj => {
+      sql = 'update tickets set kdticket='+obj.kdticket+' '
+      sql+= 'where id='+obj.id
+      console.log('update after restore',sql)
+      return sql
+    }
     removedeletedticket = obj => {
       sql = 'delete from deletedtickets '
       sql+= 'where id='+obj.id
@@ -62,5 +68,6 @@ module.exports = {
 	restoreticket:restoreticket,
   ticketsamount:ticketsamount,
   removedeletedticket:removedeletedticket,
-  getdeletedticketbycode:getdeletedticketbycode
+  getdeletedticketbycode:getdeletedticketbycode,
+  updateTicketCodeById:updateTicketCodeById
 }

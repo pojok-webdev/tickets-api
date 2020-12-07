@@ -70,5 +70,11 @@ app.get('/getdeletedticketbycode/:kdticket',(req,res)=>{
       res.send(result)
   })
 })
+app.get('/updateticketcodebyid/:kdticket/:id',(req,res)=>{
+  res.header("Access-Control-Allow-Origin","*")
+  con.getdata(query.updateTicketCodeById(req.params),result=>{
+      res.send(result)
+  })
+})
 
 app.listen(process.env.PORT||20201)
