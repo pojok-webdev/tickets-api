@@ -58,8 +58,30 @@
       sql+= 'where status='+obj.status
       console.log('tickets amount'+obj.status,sql)
       return sql
+    },
+    getfu = obj => {
+      sql = 'select a.id,a.followUpDate,a.picname,a.position,a.picphone,a.result,a.description,a.conclusion,b.name cause from '
+      sql+= 'ticket_followups a left outer join ticketcauses b on b.id=a.cause_id '
+      sql+= 'where ticket_id='+obj.ticket_id
+      console.log('getfu',sql)
+      return sql
+    },
+    removefu = obj => {
+      sql = 'delete from ticket_followups '
+      sql+= 'where id='+obj.id
+      console.log('remove fu',sql)
+      return sql
+    },
+    backupfu = obj => {
+      sql = 'insert into deletedticket_followups '
+      sql+= 'select * from ticket_followups where id='+obj.id+' '
+      console.log('backupfu',sql)
+      return sql
     }
 module.exports = {
+  removefu:removefu,
+  backupfu:backupfu,
+  getfu:getfu,
 	getticketbycode:getticketbycode,
 	getticketbyname:getticketbyname,
 	removeticket:removeticket,

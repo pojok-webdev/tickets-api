@@ -76,5 +76,22 @@ app.get('/updateticketcodebyid/:kdticket/:id',(req,res)=>{
       res.send(result)
   })
 })
-
+app.get('/getfu/:ticket_id',(req,res)=>{
+  res.header("Access-Control-Allow-Origin","*")
+  con.getdata(query.getfu(req.params),result=>{
+    res.send(result)
+  })
+})
+app.get('/backupfu/:id',(req,res)=>{
+  res.header('Access-Control-Allow-Origin','*')
+  con.getdata(query.backupfu(req.params),result=>{
+    res.send(result)
+  })
+})
+app.get('/removefu/:id',(req,res)=>{
+  res.header('Access-Control-Allow-Origin','*')
+  con.getdata(query.removefu(req.params),result=>{
+    res.send(result)
+  })
+})
 app.listen(process.env.PORT||20201)
