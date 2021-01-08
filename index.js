@@ -6,6 +6,8 @@ var express = require('express'),
 app.engine("html",require("ejs").renderFile);
 app.use(function(req,res,next){
 	res.header("Access-Control-Allow-Origin","*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
 	next();
 });
 app.use(bodyParser.json({limit:'10mb',extended:true}));
@@ -91,6 +93,23 @@ app.get('/backupfu/:id',(req,res)=>{
 app.get('/removefu/:id',(req,res)=>{
   res.header('Access-Control-Allow-Origin','*')
   con.getdata(query.removefu(req.params),result=>{
+    res.send(result)
+  })
+})
+app.post('/searchclientbyname',(req,res)=>{
+  con.getdata(query.searchClientByName(req.body),result=>{
+    res.send(result)
+  })
+})
+app.post('/searchupstreambyname',(req,res)=>{
+  con.getdata(query.searchUpstreamByName(req.body),result=>{
+    res.send(result)
+  })
+})
+app.post('/saveticket',(req,res)=>{
+  res.header('Access-Control-Allow-Origin','*')
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  con.getdata(query.saveTicket(req.body),result=>{
     res.send(result)
   })
 })

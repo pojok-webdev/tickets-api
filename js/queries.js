@@ -77,8 +77,44 @@
       sql+= 'select * from ticket_followups where id='+obj.id+' '
       console.log('backupfu',sql)
       return sql
+    },
+    searchClientByName = obj => {
+      sql = 'select b.name,b.alias,a.id site_id,b.id,a.address from client_sites a '
+      sql+= 'left outer join clients b on b.id=a.client_id '
+      sql+= 'where b.name like "%'+obj.name+'%" '
+      sql+= 'or b.alias like "%'+obj.name+'%" '
+      sql+= 'and b.active="1" '
+      console.log('searchClientByName',sql)
+      return sql
+    },
+    searchUpstreamByName = obj => {
+      sql = 'select id,name from '+obj.requesttype.toLowerCase()+'s '
+      sql+= 'where name like "%'+obj.name+'%" '
+      console.log('searchUpstreamByName',sql)
+      return sql
+    }
+    saveTicket = obj => {
+      sql = 'insert into tickets '
+      sql+= '(clientname,client_id,client_site_id,requesttype,cause_id,createuser,description,create_date,solution,reporter) '
+      sql+= 'values '
+      sql+= '("'
+      sql+= obj.clientname+'","'
+      sql+= obj.client_id+'","'
+      sql+= obj.client_site_id+'","'
+      sql+= obj.requesttype+'","'
+      sql+= obj.cause_id+'","'
+      sql+= obj.createuser+'","'
+      sql+= obj.description+'","'
+      sql+= obj.create_date+'","'
+      sql+= obj.solution+'","'
+      sql+= obj.reporter+'")'
+      console.log('Save Ticket',sql)
+      return sql
     }
 module.exports = {
+  searchClientByName:searchClientByName,
+  searchUpstreamByName:searchUpstreamByName,
+  saveTicket:saveTicket,
   removefu:removefu,
   backupfu:backupfu,
   getfu:getfu,
